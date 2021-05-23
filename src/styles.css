@@ -18,7 +18,6 @@
   background-color: #25d366;
   border-radius: 50%;
   user-select: none;
-  -webkit-box-shadow: rgb(0 0 0 / 15%) 0px 4px 12px 0px;
   box-shadow: rgb(0 0 0 / 15%) 0px 4px 12px 0px;
 }
 
@@ -27,19 +26,13 @@
   border-color: inherit;
   width: 60px;
   height: 60px;
-  -webkit-border-radius: 50%;
   border-radius: 50%;
   position: absolute;
   opacity: 0;
-  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  -webkit-animation-duration: 1.2s;
   animation-duration: 1.2s;
-  -webkit-animation-name: _pulse;
   animation-name: _pulse;
-  -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
-  -webkit-animation-delay: 1s;
   animation-delay: 1s;
 }
 
@@ -47,33 +40,16 @@
   fill: #fff;
   padding: 0.5rem;
 }
-
-@-webkit-keyframes _pulse {
+@keyframes _pulse {
   0% {
     background: rgb(76 175 79 / 50%);
-    -webkit-transform: scale(0);
     transform: scale(0);
     opacity: 1;
   }
 
   100% {
     background: rgba(76 175 79 / 50%);
-    -webkit-transform: scale(1.5);
     transform: scale(1.5);
-    opacity: 0;
-  }
-}
-
-@keyframes _pulse {
-  0% {
-    -webkit-box-shadow: 0 0 0 0 #25d366;
-    box-shadow: 0 0 0 0 #25d366;
-    opacity: 1;
-  }
-
-  100% {
-    -webkit-box-shadow: 0 0 0 15px #25d366;
-    box-shadow: 0 0 0 15px #25d366;
     opacity: 0;
   }
 }
@@ -92,7 +68,6 @@
   height: 0;
   opacity: 0;
   transition: height 0.2s ease-out;
-  -webkit-box-shadow: 0 4px 12px 0 rgb(0 0 0 / 15%);
   box-shadow: 0 4px 12px 0 rgb(0 0 0 / 15%);
 }
 
@@ -226,13 +201,11 @@
   margin-top: 4px;
   max-width: calc(100% - 120px);
   z-index: 2;
-  -webkit-box-shadow: rgb(0 0 0 / 13%) 0px 1px 0.5px;
   box-shadow: rgb(0 0 0 / 13%) 0px 1px 0.5px;
 }
 
 .floatingWhatsapp.dark .chatBody .message {
   background-color: #262d31;
-  -webkit-box-shadow: rgb(0 0 0 / 70%) 0px 1px 0.5px;
   box-shadow: rgb(0 0 0 / 70%) 0px 1px 0.5px;
 }
 
@@ -311,7 +284,6 @@
 .floatingWhatsapp .chatFooter form .input:focus {
   border-color: #075e54;
   outline: 0;
-  -webkit-box-shadow: 0 0 0 1px rgb(7 94 84 / 50%);
   box-shadow: 0 0 0 1px rgb(7 94 84 / 50%);
 }
 
@@ -327,7 +299,6 @@
 .floatingWhatsapp.dark .chatFooter form .input:focus {
   border-color: #0da896;
   outline: 0;
-  -webkit-box-shadow: 0 0 0 1px rgb(13 168 150 / 50%);
   box-shadow: 0 0 0 1px rgb(13 168 150 / 50%);
 }
 

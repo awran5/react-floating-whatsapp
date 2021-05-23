@@ -3,6 +3,7 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import postcss from 'rollup-plugin-postcss'
+import autoprefixer from 'autoprefixer'
 import copy from 'rollup-plugin-copy'
 import { terser } from 'rollup-plugin-terser'
 import packageJson from './package.json'
@@ -15,7 +16,8 @@ export default {
     commonjs(),
     typescript(),
     postcss({
-      extract: true
+      extract: true,
+      plugins: [autoprefixer()]
     }),
     copy({
       targets: [{ src: 'src/images/**/*', dest: 'dist/images' }]
