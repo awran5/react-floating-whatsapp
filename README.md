@@ -46,7 +46,7 @@ export default function App() {
 | `phoneNumber`   |    String     | Required | Phone number in [intenational format](https://faq.whatsapp.com/general/contacts/how-to-add-an-international-phone-number) |             `1234567890`             |
 | `accountName`   |    String     | Required | Account username                                                                                                          |            `Account Name`            |
 | `avatar`        |    String     | Optional | change user avatar using [static assets](https://create-react-app.dev/docs/adding-images-fonts-and-files/)                |                 `-`                  |
-| `statusMessage` |    String     | Optional | Text below the account username                                                                                           |  `Typically replies within 1 hours`  |
+| `statusMessage` |    String     | Optional | Text below the account username                                                                                           |  `Typically replies within 1 hour`   |
 | `chatMessage`   |    String     | Optional | Text inside the chat box.                                                                                                 | `Hello there! 🤝 \nHow can we help?` |
 | `darkMode`      |    boolean    | Optional | Dark style. `true` if present                                                                                             |                false                 |
 | `styles`        | CSSProperties | Optional | Inline style applied to the `Button` only                                                                                 |                 `-`                  |
