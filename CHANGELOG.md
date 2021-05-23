@@ -1,4 +1,3 @@
-## 10/31/2020
+## 05/21/2020
 
-- Bug fixed
-- Edit Readme
+- Bump version
