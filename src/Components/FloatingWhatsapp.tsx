@@ -20,7 +20,7 @@ function FloatingWhatsApp({
   phoneNumber = '1234567890',
   accountName = 'Account Name',
   avatar = '',
-  statusMessage = 'Typically replies within 1 hours',
+  statusMessage = 'Typically replies within 1 hour',
   chatMessage = 'Hello there! 🤝 \nHow can we help?',
   darkMode = false,
   styles,
