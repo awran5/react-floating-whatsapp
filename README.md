@@ -52,7 +52,7 @@ export default function App() {
 | `styles`        | CSSProperties | Optional | Inline style applied to the `Button` only                                                                                 |                 `-`                  |
 | `className`     |   className   | Optional | CSS className applied to the main `Div`                                                                                   |                 `-`                  |
 
-### [sandbox](https://codesandbox.io/s/react-floating-whatsapp-183py)
+[![Edit react-floating-whatsapp](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-floating-whatsapp-183py?fontsize=14&hidenavigation=1&theme=dark)
 
 ### License
 
