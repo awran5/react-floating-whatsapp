@@ -2,4 +2,4 @@
 'react-floating-whatsapp': minor
 ---
 
-text typo
+edit tags
