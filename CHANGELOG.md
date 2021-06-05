@@ -1,5 +1,11 @@
 ## 05/21/2020
 
+## 1.4.0
+
+### Minor Changes
+
+- 8a5ab39: typo
+
 ## 1.3.0
 
 ### Minor Changes
