@@ -1,5 +1,16 @@
 ## 05/21/2020
 
+## 1.3.0
+
+### Minor Changes
+
+- edit tags
+
+### Patch Changes
+
+- Fixed: minor css
+- d72212e: added autoprefixer
+
 ## 1.2.0
 
 ### Minor Changes
