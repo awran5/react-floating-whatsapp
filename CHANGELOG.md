@@ -1,5 +1,11 @@
 ## 05/21/2020
 
+## 1.5.0
+
+### Minor Changes
+
+- a4b44f2: minor style fix
+
 ## 1.4.0
 
 ### Minor Changes
