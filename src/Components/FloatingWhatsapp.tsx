@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { WhatsappSVG, ChatSVG, CloseSVG, SendSVG } from './Icons'
+import css from '../styles.module.css'
 
 interface FloatingWhatsAppProps {
   phoneNumber: string
@@ -23,7 +24,7 @@ function FloatingWhatsApp({
   statusMessage = 'Typically replies within 1 hour',
   chatMessage = 'Hello there! 🤝 \nHow can we help?',
   darkMode = false,
-  styles,
+  styles = {},
   className = ''
 }: FloatingWhatsAppProps): JSX.Element {
   const [isOpen, setOpen] = useState(false)
@@ -40,41 +41,41 @@ function FloatingWhatsApp({
   }
 
   return (
-    <div className={`floatingWhatsapp ${darkMode ? 'dark ' : ''}` + className}>
-      <div className='whatsappButton' onClick={handleClick} style={styles}>
+    <div className={`${css.floatingWhatsapp} ${darkMode ? css.dark : ''}` + className}>
+      <div className={css.whatsappButton} onClick={handleClick} style={styles}>
         <WhatsappSVG />
       </div>
-      <div className={`whatsappChatBox ${isOpen ? 'open' : 'close'}`}>
-        <header className='chatHeader'>
-          <div className='avatar'>
+      <div className={`${css.whatsappChatBox} ${isOpen ? css.open : css.close}`}>
+        <header className={css.chatHeader}>
+          <div className={css.avatar}>
             {avatar ? <img src={avatar} width='45' height='45' alt='whatsapp-avatar' /> : <ChatSVG />}
           </div>
-          <div className='status'>
-            <span className='statusTitle'>{accountName}</span>
-            <span className='statusSubtitle'>{statusMessage}</span>
+          <div className={css.status}>
+            <span className={css.statusTitle}>{accountName}</span>
+            <span className={css.statusSubtitle}>{statusMessage}</span>
           </div>
-          <div className='close' onClick={handleClick}>
+          <div className={css.close} onClick={handleClick}>
             <CloseSVG />
           </div>
         </header>
-        <div className='chatBody'>
-          <div className='message'>
-            <span className='triangle' />
-            <span className='accountName'>{accountName}</span>
-            <p className='messageBody'>{chatMessage}</p>
-            <span className='messageTime'>{time}</span>
+        <div className={css.chatBody}>
+          <div className={css.message}>
+            <span className={css.triangle} />
+            <span className={css.accountName}>{accountName}</span>
+            <p className={css.messageBody}>{chatMessage}</p>
+            <span className={css.messageTime}>{time}</span>
           </div>
         </div>
-        <footer className='chatFooter'>
+        <footer className={css.chatFooter}>
           <form onSubmit={handleSubmit}>
             <input
-              className={`input ${isArabic(message) ? 'arabic' : ''}`}
+              className={`${css.input} ${isArabic(message) ? css.arabic : ''}`}
               placeholder='Type a message..'
               onChange={handleChange}
               value={message}
               dir='auto'
             />
-            <button type='submit' className='buttonSend' disabled={message === ''}>
+            <button type='submit' className={css.buttonSend} disabled={message === ''}>
               <SendSVG />
             </button>
           </form>

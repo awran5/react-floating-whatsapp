@@ -16,7 +16,9 @@ export default {
     commonjs(),
     typescript(),
     postcss({
+      modules: true,
       extract: true,
+      minimize: true,
       plugins: [autoprefixer()]
     }),
     copy({

@@ -11,7 +11,7 @@
   "main": "dist/index.js",
   "source": "src/index.tsx",
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "scripts": {
     "lint": "eslint \"src/**/*.{js,ts,tsx}\"",
