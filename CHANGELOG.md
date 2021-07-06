@@ -29,12 +29,6 @@
 - Fixed: minor css
 - d72212e: added autoprefixer
 
-## 1.2.0
-
-### Minor Changes
-
-- edit tags
-
 ### Patch Changes
 
 - d72212e: added autoprefixer
