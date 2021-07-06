@@ -1,5 +1,11 @@
 ## 05/21/2020
 
+## 1.5.1
+
+### Patch Changes
+
+- bug
+
 ## 1.5.0
 
 ### Minor Changes
