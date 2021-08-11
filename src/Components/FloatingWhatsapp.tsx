@@ -27,7 +27,7 @@ function FloatingWhatsApp({
   darkMode = false,
   styles = {},
   className = '',
-  placeholder
+  placeholder = 'Type a message..'
 }: FloatingWhatsAppProps): JSX.Element {
   const [isOpen, setOpen] = useState(false)
   const [message, setMessage] = useState('')
@@ -72,7 +72,7 @@ function FloatingWhatsApp({
           <form onSubmit={handleSubmit}>
             <input
               className={`${css.input} ${isArabic(message) ? css.arabic : ''}`}
-              placeholder={placeholder ?? 'Type a message..'}
+              placeholder={placeholder}
               onChange={handleChange}
               value={message}
               dir='auto'
