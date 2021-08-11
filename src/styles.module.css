@@ -180,6 +180,7 @@
 }
 
 .chatBody {
+  height: inherit;
   padding: 20px;
   background-size: cover;
   background-repeat: repeat;
