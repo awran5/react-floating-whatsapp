@@ -11,6 +11,7 @@ interface FloatingWhatsAppProps {
   darkMode?: boolean
   styles?: React.CSSProperties
   className?: string
+  placeholder?: string
 }
 
 const time = new Date().toTimeString().split(`:`).slice(0, 2).join(`:`)
@@ -25,7 +26,8 @@ function FloatingWhatsApp({
   chatMessage = 'Hello there! 🤝 \nHow can we help?',
   darkMode = false,
   styles = {},
-  className = ''
+  className = '',
+  placeholder = 'Type a message..'
 }: FloatingWhatsAppProps): JSX.Element {
   const [isOpen, setOpen] = useState(false)
   const [message, setMessage] = useState('')
@@ -70,7 +72,7 @@ function FloatingWhatsApp({
           <form onSubmit={handleSubmit}>
             <input
               className={`${css.input} ${isArabic(message) ? css.arabic : ''}`}
-              placeholder='Type a message..'
+              placeholder={placeholder}
               onChange={handleChange}
               value={message}
               dir='auto'
