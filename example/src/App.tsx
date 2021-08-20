@@ -4,7 +4,7 @@ import 'react-floating-whatsapp/dist/index.css'
 import './App.css'
 
 function App() {
-  return <FloatingWhatsApp phoneNumber='123456789' accountName='awran5' />
+  return <FloatingWhatsApp phoneNumber='123456789' accountName='awran5' allowClickAway />
 }
 
 export default App

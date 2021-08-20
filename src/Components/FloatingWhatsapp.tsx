@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { WhatsappSVG, ChatSVG, CloseSVG, SendSVG } from './Icons'
 import css from '../styles.module.css'
 
@@ -9,6 +9,8 @@ interface FloatingWhatsAppProps {
   statusMessage?: string
   chatMessage?: string
   darkMode?: boolean
+  allowClickAway?: boolean
+  allowEsc?: boolean
   styles?: React.CSSProperties
   className?: string
   placeholder?: string
@@ -25,6 +27,8 @@ function FloatingWhatsApp({
   statusMessage = 'Typically replies within 1 hour',
   chatMessage = 'Hello there! 🤝 \nHow can we help?',
   darkMode = false,
+  allowClickAway = false,
+  allowEsc = false,
   styles = {},
   className = '',
   placeholder = 'Type a message..'
@@ -42,12 +46,45 @@ function FloatingWhatsApp({
     setMessage('')
   }
 
+  const onClickOutside = useCallback(() => {
+    if (!allowClickAway) return
+
+    if (isOpen) setOpen(false)
+  }, [allowClickAway, isOpen])
+
+  const onEscKey = useCallback(
+    (event: KeyboardEvent) => {
+      if (!allowEsc) return
+
+      if (event.key === 'Escape') {
+        if (isOpen) setOpen(false)
+      }
+    },
+    [allowEsc, isOpen]
+  )
+
+  useEffect(() => {
+    document.addEventListener('click', onClickOutside, false)
+
+    return () => document.removeEventListener('click', onClickOutside)
+  }, [onClickOutside])
+
+  useEffect(() => {
+    document.addEventListener('keydown', onEscKey, false)
+
+    return () => document.removeEventListener('keydown', onEscKey)
+  }, [onEscKey])
+
   return (
-    <div className={`${css.floatingWhatsapp} ${darkMode ? css.dark : ''}` + className}>
-      <div className={css.whatsappButton} onClick={handleClick} style={styles}>
+    <div className={`${css.floatingWhatsapp} ${darkMode ? css.dark : ''} ${className}`}>
+      <div className={css.whatsappButton} onClick={handleClick} style={styles} aria-hidden='true'>
         <WhatsappSVG />
       </div>
-      <div className={`${css.whatsappChatBox} ${isOpen ? css.open : css.close}`}>
+      <div
+        className={`${css.whatsappChatBox} ${isOpen ? css.open : css.close}`}
+        onClick={(event) => event.stopPropagation()}
+        aria-hidden='true'
+      >
         <header className={css.chatHeader}>
           <div className={css.avatar}>
             {avatar ? <img src={avatar} width='45' height='45' alt='whatsapp-avatar' /> : <ChatSVG />}
@@ -56,7 +93,7 @@ function FloatingWhatsApp({
             <span className={css.statusTitle}>{accountName}</span>
             <span className={css.statusSubtitle}>{statusMessage}</span>
           </div>
-          <div className={css.close} onClick={handleClick}>
+          <div className={css.close} onClick={handleClick} aria-hidden='true'>
             <CloseSVG />
           </div>
         </header>
