@@ -22,12 +22,6 @@ module.exports = {
       }
     ],
     '@semantic-release/npm',
-    '@semantic-release/github',
-    [
-      '@semantic-release/exec',
-      {
-        successCmd: 'echo "SEMVER_VERSION=${nextRelease.version}" > $GITHUB_ENV'
-      }
-    ]
+    '@semantic-release/github'
   ]
 }
