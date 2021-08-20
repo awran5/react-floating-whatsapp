@@ -10,7 +10,7 @@ interface FloatingWhatsAppProps {
   chatMessage?: string
   darkMode?: boolean
   allowClickAway?: boolean
-  allowEsc?: boolean
+
   styles?: React.CSSProperties
   className?: string
   placeholder?: string
@@ -28,7 +28,6 @@ function FloatingWhatsApp({
   chatMessage = 'Hello there! 🤝 \nHow can we help?',
   darkMode = false,
   allowClickAway = false,
-  allowEsc = false,
   styles = {},
   className = '',
   placeholder = 'Type a message..'
@@ -37,7 +36,8 @@ function FloatingWhatsApp({
   const [message, setMessage] = useState('')
 
   const handleClick = () => setOpen((prev) => !prev)
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => setMessage(event.target.value)
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setMessage(event.target.value)
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (!message) return
@@ -52,28 +52,11 @@ function FloatingWhatsApp({
     if (isOpen) setOpen(false)
   }, [allowClickAway, isOpen])
 
-  const onEscKey = useCallback(
-    (event: KeyboardEvent) => {
-      if (!allowEsc) return
-
-      if (event.key === 'Escape') {
-        if (isOpen) setOpen(false)
-      }
-    },
-    [allowEsc, isOpen]
-  )
-
   useEffect(() => {
     document.addEventListener('click', onClickOutside, false)
 
     return () => document.removeEventListener('click', onClickOutside)
   }, [onClickOutside])
-
-  useEffect(() => {
-    document.addEventListener('keydown', onEscKey, false)
-
-    return () => document.removeEventListener('keydown', onEscKey)
-  }, [onEscKey])
 
   return (
     <div className={`${css.floatingWhatsapp} ${darkMode ? css.dark : ''} ${className}`}>
@@ -87,7 +70,11 @@ function FloatingWhatsApp({
       >
         <header className={css.chatHeader}>
           <div className={css.avatar}>
-            {avatar ? <img src={avatar} width='45' height='45' alt='whatsapp-avatar' /> : <ChatSVG />}
+            {avatar ? (
+              <img src={avatar} width='45' height='45' alt='whatsapp-avatar' />
+            ) : (
+              <ChatSVG />
+            )}
           </div>
           <div className={css.status}>
             <span className={css.statusTitle}>{accountName}</span>
