@@ -10,7 +10,7 @@ interface FloatingWhatsAppProps {
   chatMessage?: string
   darkMode?: boolean
   allowClickAway?: boolean
-
+  allowEsc?: boolean
   styles?: React.CSSProperties
   className?: string
   placeholder?: string
@@ -28,6 +28,7 @@ function FloatingWhatsApp({
   chatMessage = 'Hello there! 🤝 \nHow can we help?',
   darkMode = false,
   allowClickAway = false,
+  allowEsc = false,
   styles = {},
   className = '',
   placeholder = 'Type a message..'
@@ -52,11 +53,28 @@ function FloatingWhatsApp({
     if (isOpen) setOpen(false)
   }, [allowClickAway, isOpen])
 
+  const onEscKey = useCallback(
+    (event: KeyboardEvent) => {
+      if (!allowEsc) return
+
+      if (event.key === 'Escape') {
+        if (isOpen) setOpen(false)
+      }
+    },
+    [allowEsc, isOpen]
+  )
+
   useEffect(() => {
     document.addEventListener('click', onClickOutside, false)
 
     return () => document.removeEventListener('click', onClickOutside)
   }, [onClickOutside])
+
+  useEffect(() => {
+    document.addEventListener('keydown', onEscKey, false)
+
+    return () => document.removeEventListener('keydown', onEscKey)
+  }, [onEscKey])
 
   return (
     <div className={`${css.floatingWhatsapp} ${darkMode ? css.dark : ''} ${className}`}>
