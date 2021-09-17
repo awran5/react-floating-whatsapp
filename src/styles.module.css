@@ -1,7 +1,7 @@
 .floatingWhatsapp {
   box-sizing: border-box;
-  width: 100vw;
-  height: 100vh;
+  width: auto;
+  height: auto;
   position: relative;
 }
 
