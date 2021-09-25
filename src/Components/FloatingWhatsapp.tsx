@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useCallback, useRef } from 'react'
+import React, { useReducer, useEffect, useCallback, useRef, useMemo } from 'react'
 import { WhatsappSVG, CloseSVG, CheckSVG, SendSVG } from './Icons'
 import css from '../styles.module.css'
 
@@ -24,10 +24,6 @@ interface FloatingWhatsAppProps {
   notificationDelay?: number
   notificationSound?: boolean
 }
-
-const time = new Date().toTimeString().split(`:`).slice(0, 2).join(`:`)
-// Just to change the ugly arabic font
-const isArabic = (string: string) => /[\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC]/.test(string)
 
 type State = {
   isOpen: boolean
@@ -77,6 +73,8 @@ function reducer(state: State, action: Action): State {
   }
 }
 
+const isArabic = (string: string) => /[\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC]/.test(string)
+
 export default function FloatingWhatsApp({
   phoneNumber = '1234567890',
   accountName = 'Account Name',
@@ -105,6 +103,7 @@ export default function FloatingWhatsApp({
 
   const soundRef = useRef<HTMLAudioElement | null>(null)
   const notificationInterval = useRef(0)
+  const time = useMemo(() => new Date().toTimeString().split(`:`).slice(0, 2).join(`:`), [])
 
   const handleOpen = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation()

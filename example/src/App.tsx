@@ -9,7 +9,7 @@ function App() {
       phoneNumber='123456789'
       accountName='awran5'
       allowClickAway
-      // avatar={avatar}
+      avatar={avatar}
       notification
       notificationSound
       notificationDelay={60000}
