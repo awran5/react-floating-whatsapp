@@ -14,7 +14,6 @@ export default {
     peerDepsExternal(),
     commonjs(),
     resolve(),
-    typescript(),
     postcss({
       minimize: true,
       plugins: [autoprefixer()]
@@ -22,6 +21,7 @@ export default {
     copy({
       targets: [{ src: 'src/components/assets/**/*', dest: 'dist/assets' }]
     }),
+    typescript(),
     terser()
   ],
   output: {

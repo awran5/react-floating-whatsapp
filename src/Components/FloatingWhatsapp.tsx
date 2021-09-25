@@ -43,7 +43,7 @@ type Action =
   | { type: 'notification' }
   | { type: 'message'; payload: string }
 
-export function reducer(state: State, action: Action): State {
+function reducer(state: State, action: Action): State {
   switch (action.type) {
     case 'open':
       return {
@@ -77,7 +77,7 @@ export function reducer(state: State, action: Action): State {
   }
 }
 
-function FloatingWhatsApp({
+export default function FloatingWhatsApp({
   phoneNumber = '1234567890',
   accountName = 'Account Name',
   height = 320,
@@ -248,5 +248,3 @@ function FloatingWhatsApp({
     </div>
   )
 }
-
-export default FloatingWhatsApp
