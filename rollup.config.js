@@ -19,7 +19,7 @@ export default {
       plugins: [autoprefixer()]
     }),
     copy({
-      targets: [{ src: 'src/Components/assets', dest: 'dist/assets' }]
+      targets: [{ src: 'src/Components/assets', dest: 'dist' }]
     }),
     typescript(),
     terser()
