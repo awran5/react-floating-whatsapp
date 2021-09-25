@@ -4,7 +4,9 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import postcss from 'rollup-plugin-postcss'
 import autoprefixer from 'autoprefixer'
-import copy from 'rollup-plugin-copy'
+// import copy from 'rollup-plugin-copy'
+import url from '@rollup/plugin-url'
+
 import { terser } from 'rollup-plugin-terser'
 import packageJson from './package.json'
 
@@ -18,9 +20,14 @@ export default {
       minimize: true,
       plugins: [autoprefixer()]
     }),
-    copy({
-      targets: [{ src: 'src/Components/assets', dest: 'dist' }]
+    url({
+      include: ['**/*.svg', '**/*.png', '**/*.jp(e)?g', '**/*.mp3', '**/*.webp'],
+      limit: 99000,
+      destDir: 'dist'
     }),
+    // copy({
+    //   targets: [{ src: 'src/Components/assets', dest: 'dist' }]
+    // }),
     typescript(),
     terser()
   ],

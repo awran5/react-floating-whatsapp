@@ -2,10 +2,10 @@ import React, { useReducer, useEffect, useCallback, useRef, useMemo } from 'reac
 import { WhatsappSVG, CloseSVG, CheckSVG, SendSVG } from './Icons'
 import css from '../styles.module.css'
 
-const darkBG = require('./assets/bg-chat-tile-light.png')
-const lightBG = require('./assets/bg-chat-tile-dark.png')
-const dummyAvatar = require('./assets/uifaces-avatar.jpg')
-const SoundBeep = require('./assets/whatsapp-notification.mp3')
+import darkBG from './assets/bg-chat-tile-light.png'
+import lightBG from './assets/bg-chat-tile-dark.png'
+import dummyAvatar from './assets/uifaces-avatar.jpg'
+import SoundBeep from './assets/whatsapp-notification.mp3'
 
 interface FloatingWhatsAppProps {
   phoneNumber: string
@@ -79,7 +79,7 @@ export default function FloatingWhatsApp({
   phoneNumber = '1234567890',
   accountName = 'Account Name',
   height = 320,
-  avatar = dummyAvatar.default,
+  avatar = dummyAvatar,
   statusMessage = 'Typically replies within 1 hour',
   chatMessage = 'Hello there! 🤝 \nHow can we help?',
   darkMode = false,
@@ -198,10 +198,7 @@ export default function FloatingWhatsApp({
           </div>
         </header>
 
-        <div
-          className={css.chatBody}
-          style={{ backgroundImage: `url(${darkMode ? darkBG.default : lightBG.default})` }}
-        >
+        <div className={css.chatBody} style={{ backgroundImage: `url(${darkMode ? darkBG : lightBG})` }}>
           {isDelay ? (
             <div className={css.chatBubble}>
               <div className={css.typing}>
@@ -242,7 +239,7 @@ export default function FloatingWhatsApp({
       </div>
       {notificationSound && (
         // eslint-disable-next-line jsx-a11y/media-has-caption
-        <audio ref={soundRef} hidden src={SoundBeep.default} />
+        <audio ref={soundRef} hidden src={SoundBeep} />
       )}
     </div>
   )

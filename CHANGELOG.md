@@ -1,3 +1,9 @@
+# 4.0.4 (patch)
+
+- Removed: semantic-release
+- Removed: github action
+- Modified: using [@rollup/plugin-url](https://www.npmjs.com/package/@rollup/plugin-url) for handling the assets
+
 # 4.0.0 (2021-09-25)
 
 - Added: Default Avatar using generated [random avatars](https://uifaces.co/)

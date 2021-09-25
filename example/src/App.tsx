@@ -12,7 +12,7 @@ function App() {
       avatar={avatar}
       notification
       notificationSound
-      notificationDelay={60000}
+      notificationDelay={30000}
       darkMode
     />
   )
