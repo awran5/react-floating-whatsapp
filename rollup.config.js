@@ -33,7 +33,6 @@ export default {
   ],
   output: {
     file: packageJson.main,
-    format: 'cjs',
-    sourcemap: true
+    format: 'cjs'
   }
 }

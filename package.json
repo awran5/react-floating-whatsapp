@@ -18,7 +18,7 @@
     "start:rollup": "rollup -cw --exports auto",
     "start:example": "cd example && yarn start",
     "start": "run-p start:rollup start:example",
-    "build": "rollup -c --exports auto",
+    "build": "yarn clean && rollup -c --exports auto",
     "publish": "npm publish"
   },
   "peerDependencies": {
