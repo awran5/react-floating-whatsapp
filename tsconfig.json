@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "plugins": [{ "name": "typescript-plugin-css-modules" }],
-    "target": "ESNext",
+    "baseUrl": "./",
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -10,16 +10,15 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "ESNext",
+    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noImplicitAny": false,
     "jsx": "react-jsx",
     "declaration": true,
-    "outDir": "./dist",
-    "baseUrl": "."
+    "outDir": "./dist"
   },
-  "include": ["src/**/*", "declaration.d.ts"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "example"]
 }
