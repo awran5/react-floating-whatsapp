@@ -1,3 +1,3 @@
-import { FloatingWhatsApp } from './components/FloatingWhatsapp'
+import FloatingWhatsApp from './components/FloatingWhatsapp'
 
-export { FloatingWhatsApp }
+export default FloatingWhatsApp
