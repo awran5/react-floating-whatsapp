@@ -24,12 +24,25 @@ npm i react-floating-whatsapp
 yarn add react-floating-whatsapp
 ```
 
+## Changes
+
+- Added: Default Avatar using generated [random avatars](https://uifaces.co/)
+- Added: New Prop `height` that allow to control the chat box height.
+- Added: New Prop `notification` that enable/disable repeated notifications sound and indicators.
+- Added: New Prop `notificationDelay` to set the time delay between notifications in millisecond.
+- Added: New Prop `notificationSound` to allow notifications sound.
+- Added: Message typing effect before `chatMessage` appears.
+- Fixed: Chat box css `position` Thanks to @jpmedeirosmorais and @jorgemndoza
+- Modified: Refactor state using useReducer Hook.
+- Modified: Prevent toggle open/close the chat box.
+- Modified: CSS stylesheet import, now its applied inline.
+- Updated: App dependencies
+
 ## Usage
 
 ```jsx
 import React from 'react'
 import FloatingWhatsApp from 'react-floating-whatsapp'
-import 'react-floating-whatsapp/dist/index.css'
 
 export default function App() {
 
@@ -41,19 +54,23 @@ export default function App() {
 
 ### Props
 
-| Prop             |     Type      | Options  | Description                                                                                                               |               Default                |
-| ---------------- | :-----------: | -------- | ------------------------------------------------------------------------------------------------------------------------- | :----------------------------------: |
-| `phoneNumber`    |    String     | Required | Phone number in [intenational format](https://faq.whatsapp.com/general/contacts/how-to-add-an-international-phone-number) |             `1234567890`             |
-| `accountName`    |    String     | Required | Account username                                                                                                          |            `Account Name`            |
-| `avatar`         |    String     | Optional | change user avatar using [static assets](https://create-react-app.dev/docs/adding-images-fonts-and-files/)                |                 `-`                  |
-| `statusMessage`  |    String     | Optional | Text below the account username                                                                                           |  `Typically replies within 1 hour`   |
-| `chatMessage`    |    String     | Optional | Text inside the chat box.                                                                                                 | `Hello there! 🤝 \nHow can we help?` |
-| `placeholder`    |    String     | Optional | Input placeholder.                                                                                                        |          `Type a message..`          |
-| `darkMode`       |    boolean    | Optional | Dark style.                                                                                                               |                false                 |
-| `allowClickAway` |    boolean    | Optional | Closes the chat box when user click outside                                                                               |                false                 |
-| `allowEsc`       |    boolean    | Optional | Closes the chat box when escape key is pressed                                                                            |                false                 |
-| `styles`         | CSSProperties | Optional | Inline style applied to the `Button` only                                                                                 |                 `-`                  |
-| `className`      |   className   | Optional | CSS className applied to the main `Div`                                                                                   |                 `-`                  |
+| Prop                |     Type      | Options  | Description                                                                                                               |               Default                |
+| ------------------- | :-----------: | -------- | ------------------------------------------------------------------------------------------------------------------------- | :----------------------------------: |
+| `phoneNumber`       |    String     | Required | Phone number in [intenational format](https://faq.whatsapp.com/general/contacts/how-to-add-an-international-phone-number) |             `1234567890`             |
+| `accountName`       |    String     | Required | Account username                                                                                                          |            `Account Name`            |
+| `avatar`            |    String     | Optional | Change user avatar using [static assets](https://create-react-app.dev/docs/adding-images-fonts-and-files/)                |              `UI Faces`              |
+| `statusMessage`     |    String     | Optional | Text below the account username                                                                                           |  `Typically replies within 1 hour`   |
+| `chatMessage`       |    String     | Optional | Text inside the chat box.                                                                                                 | `Hello there! 🤝 \nHow can we help?` |
+| `placeholder`       |    String     | Optional | Input placeholder.                                                                                                        |          `Type a message..`          |
+| `darkMode`          |    Boolean    | Optional | Dark style.                                                                                                               |               `false`                |
+| `allowClickAway`    |    Boolean    | Optional | Closes the chat box when user clicks outside                                                                              |               `false`                |
+| `allowEsc`          |    Boolean    | Optional | Closes the chat box when `Escape` key is pressed                                                                          |               `false`                |
+| `className`         |    String     | Optional | CSS className applied to the main wrapping `Div`                                                                          |            `custom-class`            |
+| `styles`            | CSSProperties | Optional | Inline style applied to the `Button` only                                                                                 |                 `{}`                 |
+| `height`            |    Number     | Optional | Control chat box height                                                                                                   |                `300`                 |
+| `notification`      |    Boolean    | Optional | Allow repeated notifications (Disabled after user opens the chat box)                                                     |               `false`                |
+| `notificationDelay` |    Number     | Optional | Time delay between notifications in millisecond                                                                           |               `18000`                |
+| `notificationSound` |    Boolean    | Optional | Allow notification sound                                                                                                  |               `false`                |
 
 <br />
 

@@ -1,3 +1,3 @@
-import FloatingWhatsapp from './Components/FloatingWhatsapp'
+import FloatingWhatsapp from './components/FloatingWhatsapp'
 
 export default FloatingWhatsapp
