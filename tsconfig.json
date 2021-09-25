@@ -17,7 +17,8 @@
     "noImplicitAny": false,
     "jsx": "react-jsx",
     "declaration": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "baseUrl": "."
   },
   "include": ["src/**/*", "declaration.d.ts"],
   "exclude": ["node_modules", "dist", "example"]
