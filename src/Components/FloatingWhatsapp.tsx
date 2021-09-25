@@ -101,7 +101,7 @@ function FloatingWhatsApp({
     message: ''
   })
 
-  if (notificationDelay < 3000) throw new Error('notificationDelay prop value must be at least 30 seconds (30000 ms)')
+  if (notificationDelay < 30000) throw new Error('notificationDelay prop value must be at least 30 seconds (30000 ms)')
 
   const soundRef = useRef<HTMLAudioElement | null>(null)
   const notificationInterval = useRef(0)
