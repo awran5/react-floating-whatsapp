@@ -13,6 +13,7 @@ function App() {
       notification
       notificationSound
       notificationDelay={60000}
+      darkMode
     />
   )
 }
