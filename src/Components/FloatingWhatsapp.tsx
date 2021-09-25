@@ -77,7 +77,7 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-export default function FloatingWhatsApp({
+export function FloatingWhatsApp({
   phoneNumber = '1234567890',
   accountName = 'Account Name',
   height = 320,

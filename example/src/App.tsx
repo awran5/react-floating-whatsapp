@@ -1,5 +1,5 @@
 import React from 'react'
-import FloatingWhatsApp from 'react-floating-whatsapp'
+import { FloatingWhatsApp } from 'react-floating-whatsapp'
 import './App.css'
 import avatar from './logo.svg'
 
