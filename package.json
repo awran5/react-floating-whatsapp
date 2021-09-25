@@ -9,7 +9,6 @@
   "bugs": "https://github.com/awran5/react-floating-whatsapp/issues",
   "homepage": "https://github.com/awran5/react-floating-whatsapp#readme",
   "main": "dist/index.js",
-  "source": "src/index.tsx",
   "engines": {
     "node": ">=14"
   },
@@ -60,7 +59,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "^4.0.3",
-    "rollup": "2.56.3",
+    "rollup": "^2.57.0",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.1",
