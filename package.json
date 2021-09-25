@@ -18,14 +18,14 @@
     "start:rollup": "rollup -cw --exports auto",
     "start:example": "cd example && yarn start",
     "start": "run-p start:rollup start:example",
-    "build": "rollup -c --exports auto"
+    "build": "rollup -c --exports auto",
+    "publish": "npm publish"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.17.0",
     "@rollup/plugin-commonjs": "^20.0.0",
     "@rollup/plugin-node-resolve": "^13.0.5",
     "@types/node": "^16.9.6",
