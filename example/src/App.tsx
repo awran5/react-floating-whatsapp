@@ -14,6 +14,7 @@ function App() {
       notificationSound
       notificationDelay={30000}
       darkMode
+      defaultMessage={`Hello, I have a query`}
     />
   )
 }
