@@ -14,6 +14,7 @@ interface FloatingWhatsAppProps {
   avatar?: string
   statusMessage?: string
   chatMessage?: string
+  defaultMessage?: string
   darkMode?: boolean
   allowClickAway?: boolean
   allowEsc?: boolean
@@ -81,6 +82,7 @@ export default function FloatingWhatsApp({
   height = 320,
   avatar = dummyAvatar,
   statusMessage = 'Typically replies within 1 hour',
+  defaultMessage = "Hi, I have a query",
   chatMessage = 'Hello there! 🤝 \nHow can we help?',
   darkMode = false,
   allowClickAway = false,
@@ -96,7 +98,7 @@ export default function FloatingWhatsApp({
     isOpen: false,
     isDelay: true,
     isNotification: false,
-    message: ''
+    message: defaultMessage
   })
 
   if (notificationDelay < 30000) throw new Error('notificationDelay prop value must be at least 30 seconds (30000 ms)')
