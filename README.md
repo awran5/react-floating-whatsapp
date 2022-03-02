@@ -37,6 +37,7 @@ yarn add react-floating-whatsapp
 - Modified: Prevent toggle open/close the chat box.
 - Modified: CSS stylesheet import, now its applied inline.
 - Updated: App dependencies
+- Added `defaultMessage` prop to allow for a prefilled message.
 
 ## Usage
 
@@ -71,6 +72,8 @@ export default function App() {
 | `notification`      |    Boolean    | Optional | Allow repeated notifications (Disabled after user opens the chat box)                                                     |               `false`                |
 | `notificationDelay` |    Number     | Optional | Time delay between notifications in millisecond                                                                           |               `18000`                |
 | `notificationSound` |    Boolean    | Optional | Allow notification sound                                                                                                  |               `false`                |
+| `defaultMessage` |    String    | Optional | A default prefilled message.                                                                                                  |               `Hello, I have a query`                |
+
 
 <br />
 
