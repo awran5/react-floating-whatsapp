@@ -233,7 +233,7 @@ export default function FloatingWhatsApp({
               value={message}
               dir='auto'
             />
-            <button type='submit' className={css.buttonSend} disabled={message === ''}>
+            <button type='submit' className={css.buttonSend} disabled={message === ''} aria-label="send">
               <SendSVG />
             </button>
           </form>
