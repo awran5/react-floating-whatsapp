@@ -5,45 +5,52 @@
   "description": "Simple React Component for adding a floating WhatsApp button to your project.",
   "author": "awran5 <awran5@yahoo.com>",
   "license": "MIT",
-  "repository": "https://github.com/awran5/react-floating-whatsapp",
-  "bugs": "https://github.com/awran5/react-floating-whatsapp/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/awran5/react-floating-whatsapp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/awran5/react-floating-whatsapp/issues"
+  },
   "homepage": "https://github.com/awran5/react-floating-whatsapp#readme",
   "main": "dist/index.js",
+  "source": "src/index.tsx",
   "engines": {
     "node": ">=14"
   },
   "scripts": {
-    "lint": "eslint \"src/**/*.{js,ts,tsx}\"",
     "clean": "rm -rf dist",
-    "start": "rollup -cw --exports auto",
-    "build": "yarn clean && rollup -c --exports auto"
+    "build": "yarn clean && rollup -c --exports auto",
+    "start": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.19.3",
     "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-node-resolve": "^14.1.0",
     "@rollup/plugin-url": "^7.0.0",
+    "@storybook/addon-actions": "^6.5.12",
+    "@storybook/addon-essentials": "^6.5.12",
+    "@storybook/addon-interactions": "^6.5.12",
+    "@storybook/addon-links": "^6.5.12",
+    "@storybook/builder-webpack5": "^6.5.12",
+    "@storybook/manager-webpack5": "^6.5.12",
+    "@storybook/react": "^6.5.12",
+    "@storybook/testing-library": "^0.0.13",
     "@types/node": "^18.8.2",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
-    "@typescript-eslint/eslint-plugin": "^5.39.0",
-    "@typescript-eslint/parser": "^5.39.0",
     "autoprefixer": "^10.4.12",
-    "eslint": "^8.24.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.6.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.31.8",
-    "eslint-plugin-react-hooks": "^4.6.0",
+    "babel-loader": "^8.2.5",
     "postcss": "^8.4.17",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.4.0",
     "react-scripts": "^5.0.1",
     "rollup": "^2.79.1",
     "rollup-plugin-copy": "^3.4.0",
@@ -67,6 +74,11 @@
     "react component",
     "react typescript"
   ],
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
   "tags": [
     "react",
     "whatsapp",
