@@ -3,6 +3,7 @@
   height: 100%;
   text-align: left;
   position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .whatsappButton {
@@ -57,7 +58,8 @@
   width: 375px;
   opacity: 0;
   transition: height 0.2s ease-out;
-  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 50%);
+  box-shadow: 0 3px 10px 0 rgb(0 0 0 / 20%);
+  z-index: 9999;
 }
 
 .whatsappChatBox.open {
@@ -85,16 +87,16 @@
 
 .chatHeader {
   background-color: #075e54;
-  display: flex;
+  display: grid;
   align-items: center;
-  margin-bottom: auto;
-  min-height: 65px;
   padding: 0.25rem;
+  grid-template-columns: 20% 60% 1fr;
+  gap: 1%;
 }
 
 .chatHeader .avatar {
   padding: 0.25rem;
-  max-width: 20%;
+
   position: relative;
 }
 .chatHeader .avatar img {
@@ -126,25 +128,23 @@
   color: #fff;
   display: flex;
   flex-direction: column;
-  width: 70%;
   padding: 0.5rem;
 }
 
 .chatHeader .statusTitle {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
 }
 
 .chatHeader .statusSubtitle {
-  font-size: 80%;
-  margin-top: 0.25px;
+  font-size: 0.8rem;
   color: #f0f0f0;
 }
 
 .chatHeader .close {
   padding: 1rem;
-  display: flex;
   cursor: pointer;
+  text-align: center;
 }
 
 .chatHeader .close svg {
@@ -158,7 +158,7 @@
   background-size: cover;
   background-repeat: repeat;
   max-height: 382px;
-  background-color: #e5ddd5;
+  background-color: #eae6df;
   height: 100%;
   opacity: 0.9;
 }
@@ -206,7 +206,6 @@
   background-color: #fff;
   border-radius: 0px 8px 8px;
   position: relative;
-  margin-top: 4px;
   max-width: calc(100% - 120px);
   z-index: 2;
   box-shadow: rgb(0 0 0 / 13%) 0px 1px 0.5px;
@@ -249,14 +248,15 @@
 }
 
 .chatFooter {
-  margin-top: auto;
+  padding: 0.25rem;
+  background-color: #f0f0f0;
 }
 
 .chatFooter form {
-  display: flex;
-  padding: 8px;
+  display: grid;
   align-items: center;
-  background-color: #f0f0f0;
+  grid-template-columns: 80% 15%;
+  gap: 5%;
 }
 
 .chatFooter form .input {
@@ -280,7 +280,6 @@
 }
 
 .chatFooter form .buttonSend {
-  flex: 0;
   padding: 8px;
   background-color: transparent;
   border: 0;
@@ -327,7 +326,7 @@
   color: rgb(255 255 255 / 50%);
 }
 
-.dark .chatFooter form {
+.dark .chatFooter {
   background-color: #1e2428;
 }
 
