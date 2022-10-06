@@ -6,7 +6,13 @@ import { FloatingWhatsApp } from '../components/FloatingWhatsApp'
 export default {
   title: 'Example',
   component: FloatingWhatsApp,
-  argTypes: {}
+  argTypes: {},
+
+  parameters: {
+    previewTabs: {
+      'storybook/docs/panel': { hidden: true }
+    }
+  }
 } as ComponentMeta<typeof FloatingWhatsApp>
 
 // eslint-disable-next-line react/function-component-definition, react/jsx-props-no-spreading
@@ -30,6 +36,39 @@ Notification.args = {
   accountName: 'John Doe',
   phoneNumber: '1234567890',
   notification: true,
+  notificationLoop: 1,
+  notificationDelay: 20
+}
+
+export const NotificationWithSound = Template.bind({})
+NotificationWithSound.args = {
+  accountName: 'John Doe',
+  phoneNumber: '1234567890',
+  notification: true,
+  notificationSound: true,
+  notificationLoop: 1,
+  notificationDelay: 20
+}
+
+export const NotificationLoop = Template.bind({})
+NotificationLoop.args = {
+  accountName: 'John Doe',
+  phoneNumber: '1234567890',
+  notification: true,
+  notificationSound: true,
   notificationLoop: 5,
-  notificationDelay: 30
+  notificationDelay: 20
+}
+
+export const EnableClickAway = Template.bind({})
+EnableClickAway.args = {
+  accountName: 'John Doe',
+  phoneNumber: '1234567890',
+  allowClickAway: true
+}
+export const EnableEscKey = Template.bind({})
+EnableEscKey.args = {
+  accountName: 'John Doe',
+  phoneNumber: '1234567890',
+  allowEsc: true
 }
