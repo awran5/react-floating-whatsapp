@@ -20,6 +20,7 @@
   border-radius: 50%;
   user-select: none;
   box-shadow: rgb(0 0 0 / 15%) 0px 4px 12px 0px;
+  z-index: 9998;
 }
 
 .whatsappButton:after {
@@ -48,7 +49,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 18px;
+  border-radius: 5%;
   overflow: hidden;
   background-color: #fff;
   touch-action: auto;
@@ -60,6 +61,15 @@
   transition: height 0.2s ease-out;
   box-shadow: 0 3px 10px 0 rgb(0 0 0 / 20%);
   z-index: 9999;
+}
+
+@media (max-width: 575px) {
+  .whatsappChatBox {
+    right: 0;
+    left: 0;
+    max-width: 90%;
+    margin: auto;
+  }
 }
 
 .whatsappChatBox.open {
@@ -74,15 +84,6 @@
   animation-duration: 600ms;
   transition-timing-function: ease-in;
   animation-fill-mode: both;
-}
-
-@media (min-width: 320px) and (max-width: 480px) {
-  .whatsappChatBox {
-    right: 0;
-    left: 0;
-    max-width: 90%;
-    margin: auto;
-  }
 }
 
 .chatHeader {
@@ -255,8 +256,8 @@
 .chatFooter form {
   display: grid;
   align-items: center;
-  grid-template-columns: 80% 15%;
-  gap: 5%;
+  grid-template-columns: 85% 15%;
+  padding: 0.25rem;
 }
 
 .chatFooter form .input {
@@ -264,7 +265,6 @@
   padding: 0 10px;
   border: none;
   background-color: #fefefe;
-  width: 100%;
   min-height: 45px;
   transition: box-shadow 0.2s ease-in-out;
 }
@@ -280,7 +280,6 @@
 }
 
 .chatFooter form .buttonSend {
-  padding: 8px;
   background-color: transparent;
   border: 0;
   cursor: pointer;
@@ -289,10 +288,6 @@
 .chatFooter form .buttonSend svg {
   vertical-align: middle;
   fill: #919191;
-}
-
-.chatFooter form .input.arabic {
-  font-family: tahoma;
 }
 
 .chatFooter form .buttonSend:disabled {
