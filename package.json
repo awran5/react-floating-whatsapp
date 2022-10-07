@@ -22,6 +22,7 @@
     "clean": "rm -rf dist",
     "build": "yarn clean && rollup -c --exports auto",
     "start": "start-storybook -p 6006",
+    "changes": "auto-changelog -p --template keepachangelog && git add CHANGELOG.md",
     "build-storybook": "build-storybook"
   },
   "peerDependencies": {
@@ -44,6 +45,7 @@
     "@types/node": "^18.8.2",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
+    "auto-changelog": "^2.4.0",
     "autoprefixer": "^10.4.12",
     "babel-loader": "^8.2.5",
     "postcss": "^8.4.17",
