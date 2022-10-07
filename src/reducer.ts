@@ -2,15 +2,9 @@ type State = {
   isOpen: boolean
   isDelay: boolean
   isNotification: boolean
-  message: string
 }
 
-type Action =
-  | { type: 'open' }
-  | { type: 'close' }
-  | { type: 'delay' }
-  | { type: 'notification' }
-  | { type: 'message'; payload: string }
+type Action = { type: 'open' } | { type: 'close' } | { type: 'delay' } | { type: 'notification' }
 
 export function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -36,11 +30,7 @@ export function reducer(state: State, action: Action): State {
         ...state,
         isNotification: true
       }
-    case 'message':
-      return {
-        ...state,
-        message: action.payload
-      }
+
     default:
       return state
   }
