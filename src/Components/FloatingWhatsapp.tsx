@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect, useCallback, useRef, useMemo } from 'react'
+import { reducer } from '../reducer'
 import { WhatsappSVG, CloseSVG, CheckSVG, SendSVG } from './Icons'
 import css from '../styles.module.css'
 
@@ -7,183 +8,203 @@ import lightBG from './assets/bg-chat-tile-dark.png'
 import dummyAvatar from './assets/uifaces-avatar.jpg'
 import SoundBeep from './assets/whatsapp-notification.mp3'
 
-interface FloatingWhatsAppProps {
+export interface FloatingWhatsAppProps {
+  /** Callback function fires on click */
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void
+  /** Callback function fires on submit with event and form input value passed */
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>, formValue: string) => void
+  /** Callback function fires on close */
+  onClose?: () => void
+  /** Callback function called when notification loop done */
+  onLoopDone?: () => void
+
+  /** Phone number in [intenational format](https://faq.whatsapp.com/general/contacts/how-to-add-an-international-phone-number) */
   phoneNumber: string
+  /** Account Name */
   accountName: string
-  height?: number
+  /** Set chat box height */
+  chatboxHeight?: number
+  /** Change user avatar using [static assets](https://create-react-app.dev/docs/adding-images-fonts-and-files/) */
   avatar?: string
+  /** Text below the account username */
   statusMessage?: string
+  /** Text inside the chat box */
   chatMessage?: string
-  darkMode?: boolean
-  allowClickAway?: boolean
-  allowEsc?: boolean
-  styles?: React.CSSProperties
-  className?: string
+  /** Input placeholder */
   placeholder?: string
+
+  /** Allow notifications (Disabled after user opens the chat box) */
   notification?: boolean
+  /** Time delay between notifications in seconds */
   notificationDelay?: number
+  /** Repeat notifications loop */
+  notificationLoop?: number
+  /** Enable notification sound */
   notificationSound?: boolean
+  /** Notification sound custom src */
+  notificationSoundSrc?: string
+
+  /** Enable / Disable dark mode */
+  darkMode?: boolean
+  /** Closes the chat box if click outside the chat box */
+  allowClickAway?: boolean
+  /** Closes the chat box if `Escape` key is clicked */
+  allowEsc?: boolean
+
+  /** Inline style  applied to the main wrapping `Div` */
+  style?: React.CSSProperties
+  /** CSS className applied to the main wrapping `Div` */
+  className?: string
+
+  /** Inline style applied to button */
+  buttonStyle?: React.CSSProperties
+  /** CSS className applied to button */
+  buttonClassName?: string
+  /** Inline style applied to chat box */
+  chatboxStyle?: React.CSSProperties
+  /** CSS className applied to chat box */
+  chatboxClassName?: string
 }
 
-type State = {
-  isOpen: boolean
-  isDelay: boolean
-  isNotification: boolean
-  message: string
-}
-
-type Action =
-  | { type: 'open' }
-  | { type: 'close' }
-  | { type: 'delay' }
-  | { type: 'notification' }
-  | { type: 'message'; payload: string }
-
-function reducer(state: State, action: Action): State {
-  switch (action.type) {
-    case 'open':
-      return {
-        ...state,
-        isOpen: true,
-        isNotification: false
-      }
-    case 'close':
-      return {
-        ...state,
-        isOpen: false
-      }
-
-    case 'delay':
-      return {
-        ...state,
-        isDelay: false
-      }
-    case 'notification':
-      return {
-        ...state,
-        isNotification: true
-      }
-    case 'message':
-      return {
-        ...state,
-        message: action.payload
-      }
-    default:
-      return state
-  }
-}
-
-const isArabic = (string: string) => /[\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC]/.test(string)
-
-export default function FloatingWhatsApp({
+export function FloatingWhatsApp({
+  onClick,
+  onSubmit,
+  onClose,
+  onLoopDone,
   phoneNumber = '1234567890',
   accountName = 'Account Name',
-  height = 320,
+  chatboxHeight = 320,
   avatar = dummyAvatar,
   statusMessage = 'Typically replies within 1 hour',
   chatMessage = 'Hello there! 🤝 \nHow can we help?',
+  placeholder = 'Type a message..',
   darkMode = false,
   allowClickAway = false,
   allowEsc = false,
-  styles = {},
-  className = 'custom-class',
-  placeholder = 'Type a message..',
-  notification = false,
-  notificationDelay = 180000, // 3 minutes
-  notificationSound = false
+  notification = true,
+  notificationDelay = 60,
+  notificationLoop = 0,
+  notificationSound = false,
+  notificationSoundSrc = SoundBeep,
+  style,
+  buttonStyle,
+  chatboxStyle,
+  className = 'floating-whatsapp',
+  buttonClassName = 'floating-whatsapp-button',
+  chatboxClassName = 'floating-whatsapp-chatbox'
 }: FloatingWhatsAppProps) {
-  const [{ isOpen, isDelay, isNotification, message }, dispatch] = useReducer(reducer, {
+  const [{ isOpen, isDelay, isNotification }, dispatch] = useReducer(reducer, {
     isOpen: false,
     isDelay: true,
-    isNotification: false,
-    message: ''
+    isNotification: false
   })
 
-  if (notificationDelay < 30000) throw new Error('notificationDelay prop value must be at least 30 seconds (30000 ms)')
+  const timeNow = useMemo(() => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), [])
 
+  const inputRef = useRef<HTMLInputElement | null>(null)
   const soundRef = useRef<HTMLAudioElement | null>(null)
+  const loops = useRef(0)
   const notificationInterval = useRef(0)
-  const time = useMemo(() => new Date().toTimeString().split(`:`).slice(0, 2).join(`:`), [])
 
-  const handleOpen = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.stopPropagation()
-    if (isOpen) return
-
-    dispatch({ type: 'open' })
-
-    setTimeout(() => dispatch({ type: 'delay' }), 2000)
-
-    window.clearInterval(notificationInterval.current)
-  }
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: 'message', payload: event.target.value })
-  }
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    if (!message) return
-
-    window.open(`https://api.whatsapp.com/send/?phone=${phoneNumber}&text=${message}`)
-    dispatch({ type: 'message', payload: '' })
-  }
-
-  const onNotification = useCallback(() => {
+  const handleNotification = useCallback(() => {
     if (!notification) return
 
-    notificationInterval.current = window.setInterval(() => {
+    dispatch({ type: 'notification' })
+
+    if (notificationLoop > 0) {
+      loops.current += 1
+
       if (notificationSound) {
         if (soundRef.current) {
           soundRef.current.currentTime = 0
           soundRef.current.play()
         }
       }
-      dispatch({ type: 'notification' })
-    }, notificationDelay)
-  }, [notification, notificationDelay, notificationSound])
+      if (loops.current === notificationLoop) {
+        clearInterval(notificationInterval.current)
+        if (onLoopDone) onLoopDone()
+      }
+    }
+  }, [notification, notificationLoop, notificationSound, onLoopDone])
 
-  const onClickOutside = useCallback(() => {
-    if (!allowClickAway || !isOpen) return
+  useEffect(() => {
+    const delayInSecond = notificationDelay * 1000
+    if (delayInSecond < 10) return console.error('notificationDelay prop value must be at least 10 seconds.')
 
-    dispatch({ type: 'close' })
-  }, [allowClickAway, isOpen])
+    notificationInterval.current = window.setInterval(handleNotification, delayInSecond)
 
-  const onEscKey = useCallback(
-    (event: KeyboardEvent) => {
-      if (!allowEsc || !isOpen) return
+    return () => clearInterval(notificationInterval.current)
+  }, [handleNotification, notificationDelay])
 
-      if (event.key === 'Escape') dispatch({ type: 'close' })
+  const handleOpen = useCallback(
+    (event: React.MouseEvent<HTMLDivElement>) => {
+      event.stopPropagation()
+
+      if (isOpen) return
+
+      clearInterval(notificationInterval.current)
+      dispatch({ type: 'open' })
+      setTimeout(() => dispatch({ type: 'delay' }), 2000)
+      if (onClick) onClick(event)
     },
-    [allowEsc, isOpen]
+    [isOpen, onClick]
   )
 
-  useEffect(() => {
-    onNotification()
-  }, [onNotification])
+  const handleClose = useCallback(() => {
+    dispatch({ type: 'close' })
+
+    if (onClose) onClose()
+  }, [onClose])
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (!inputRef.current?.value) return
+
+    window.open(`https://api.whatsapp.com/send/?phone=${phoneNumber}&text=${inputRef.current.value}`)
+    if (onSubmit) onSubmit(event, inputRef.current.value)
+    inputRef.current.value = ''
+  }
 
   useEffect(() => {
+    const onClickOutside = () => {
+      if (!allowClickAway || !isOpen) return
+
+      handleClose()
+    }
     document.addEventListener('click', onClickOutside, false)
 
     return () => document.removeEventListener('click', onClickOutside)
-  }, [onClickOutside])
+  }, [allowClickAway, isOpen, handleClose])
 
   useEffect(() => {
+    const onEscKey = (event: KeyboardEvent) => {
+      if (!allowEsc || !isOpen) return
+
+      if (event.key === 'Escape') handleClose()
+    }
+
     document.addEventListener('keydown', onEscKey, false)
 
     return () => document.removeEventListener('keydown', onEscKey)
-  }, [onEscKey])
+  }, [allowEsc, isOpen, handleClose])
 
   return (
-    <div className={`${css.floatingWhatsapp} ${darkMode ? `${css.dark} ` : ''}${className}`}>
-      <div className={css.whatsappButton} onClick={(event) => handleOpen(event)} style={styles} aria-hidden='true'>
+    <div className={`${css.floatingWhatsapp} ${darkMode ? `${css.dark} ` : ''} ${className}`} style={style}>
+      <div
+        className={`${css.whatsappButton} ${buttonClassName}`}
+        onClick={handleOpen}
+        style={buttonStyle}
+        aria-hidden='true'
+      >
         <WhatsappSVG />
         {isNotification && <span className={css.notificationIndicator}>1</span>}
       </div>
+
       <div
-        className={`${css.whatsappChatBox} ${isOpen ? css.open : css.close}`}
+        className={`${css.whatsappChatBox} ${isOpen ? css.open : css.close} ${chatboxClassName}`}
         onClick={(event) => event.stopPropagation()}
         aria-hidden='true'
-        style={{ height: isOpen ? height : 0 }}
+        style={{ height: isOpen ? chatboxHeight : 0, ...chatboxStyle }}
       >
         <header className={css.chatHeader}>
           <div className={css.avatar}>
@@ -193,7 +214,7 @@ export default function FloatingWhatsApp({
             <span className={css.statusTitle}>{accountName}</span>
             <span className={css.statusSubtitle}>{statusMessage}</span>
           </div>
-          <div className={css.close} onClick={() => dispatch({ type: 'close' })} aria-hidden='true'>
+          <div className={css.close} onClick={handleClose} aria-hidden='true'>
             <CloseSVG />
           </div>
         </header>
@@ -213,7 +234,7 @@ export default function FloatingWhatsApp({
               <span className={css.accountName}>{accountName}</span>
               <p className={css.messageBody}>{chatMessage}</p>
               <span className={css.messageTime}>
-                {time}
+                {timeNow}
                 <span style={{ marginLeft: 5 }}>
                   <CheckSVG />
                 </span>
@@ -224,23 +245,14 @@ export default function FloatingWhatsApp({
 
         <footer className={css.chatFooter}>
           <form onSubmit={handleSubmit}>
-            <input
-              className={`${css.input} ${isArabic(message) ? css.arabic : ''}`}
-              placeholder={placeholder}
-              onChange={handleChange}
-              value={message}
-              dir='auto'
-            />
-            <button type='submit' className={css.buttonSend} disabled={message === ''}>
+            <input className={css.input} placeholder={placeholder} ref={inputRef} dir='auto' />
+            <button type='submit' className={css.buttonSend}>
               <SendSVG />
             </button>
           </form>
         </footer>
       </div>
-      {notificationSound && (
-        // eslint-disable-next-line jsx-a11y/media-has-caption
-        <audio ref={soundRef} hidden src={SoundBeep} />
-      )}
+      {notificationSound && <audio ref={soundRef} hidden src={notificationSoundSrc} />}
     </div>
   )
 }
