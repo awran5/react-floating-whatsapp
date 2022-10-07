@@ -29,6 +29,7 @@ yarn add react-floating-whatsapp
 - **BREAKING CHANGES:** change **default** import to **name** import
 - **BREAKING CHANGES:** rename `height` prop to `chatboxHeight`
 - **BREAKING CHANGES:** rename `styles` prop to `style`
+- **BREAKING CHANGES:** `notificationDelay` now in seconds instead of millisecond
 
 ## Usage
 
