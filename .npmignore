@@ -1,5 +1,7 @@
 src
 example
+.storybook
+storybook-static
 .eslintignore
 .eslintrc
 .prettierrc

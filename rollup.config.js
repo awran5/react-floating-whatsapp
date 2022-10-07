@@ -4,12 +4,12 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import postcss from 'rollup-plugin-postcss'
 import autoprefixer from 'autoprefixer'
-// import copy from 'rollup-plugin-copy'
 import url from '@rollup/plugin-url'
 
 import { terser } from 'rollup-plugin-terser'
 import packageJson from './package.json'
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   input: 'src/index.tsx',
   plugins: [
@@ -25,10 +25,9 @@ export default {
       limit: 99000,
       destDir: 'dist'
     }),
-    // copy({
-    //   targets: [{ src: 'src/Components/assets', dest: 'dist' }]
-    // }),
-    typescript(),
+    typescript({
+      exclude: ['src/stories/**']
+    }),
     terser()
   ],
   output: {
