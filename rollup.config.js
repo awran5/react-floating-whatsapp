@@ -17,7 +17,6 @@ export default {
     commonjs(),
     resolve(),
     postcss({
-      minimize: true,
       plugins: [autoprefixer()]
     }),
     url({
@@ -34,4 +33,16 @@ export default {
     file: packageJson.main,
     format: 'cjs'
   }
+}
+
+/**
+ * Check for touch devices
+ * @returns `boolean`
+ */
+function isTouchDevice() {
+  return (
+    (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) ||
+    'ontouchstart' in window ||
+    (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0)
+  )
 }
