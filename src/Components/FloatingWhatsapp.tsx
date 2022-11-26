@@ -15,6 +15,8 @@ export interface FloatingWhatsAppProps {
   onSubmit?: (event: React.FormEvent<HTMLFormElement>, formValue: string) => void
   /** Callback function fires on close */
   onClose?: () => void
+  /** Callback function fired when notification runs */
+  onNotification?: () => void
   /** Callback function called when notification loop done */
   onLoopDone?: () => void
 
@@ -24,6 +26,10 @@ export interface FloatingWhatsAppProps {
   accountName: string
   /** Set chat box height */
   chatboxHeight?: number
+  /** Inline style applied to chat box */
+  chatboxStyle?: React.CSSProperties
+  /** CSS className applied to chat box */
+  chatboxClassName?: string
   /** Change user avatar using [static assets](https://create-react-app.dev/docs/adding-images-fonts-and-files/) */
   avatar?: string
   /** Text below the account username */
@@ -43,14 +49,17 @@ export interface FloatingWhatsAppProps {
   notificationSound?: boolean
   /** Notification sound custom src */
   notificationSoundSrc?: string
+  /** Inline style applied to notification */
+  notificationStyle?: React.CSSProperties
+  /** CSS className applied to notification */
+  notificationClassName?: string
 
-  /** Enable / Disable dark mode */
-  darkMode?: boolean
   /** Closes the chat box if click outside the chat box */
   allowClickAway?: boolean
   /** Closes the chat box if `Escape` key is clicked */
   allowEsc?: boolean
-
+  /** Enable / Disable dark mode */
+  darkMode?: boolean
   /** Inline style  applied to the main wrapping `Div` */
   style?: React.CSSProperties
   /** CSS className applied to the main wrapping `Div` */
@@ -60,38 +69,43 @@ export interface FloatingWhatsAppProps {
   buttonStyle?: React.CSSProperties
   /** CSS className applied to button */
   buttonClassName?: string
-  /** Inline style applied to chat box */
-  chatboxStyle?: React.CSSProperties
-  /** CSS className applied to chat box */
-  chatboxClassName?: string
 }
 
 export function FloatingWhatsApp({
   onClick,
   onSubmit,
   onClose,
+  onNotification,
   onLoopDone,
+
   phoneNumber = '1234567890',
   accountName = 'Account Name',
-  chatboxHeight = 320,
   avatar = dummyAvatar,
   statusMessage = 'Typically replies within 1 hour',
   chatMessage = 'Hello there! 🤝 \nHow can we help?',
   placeholder = 'Type a message..',
-  darkMode = false,
+
   allowClickAway = false,
   allowEsc = false,
+
   notification = true,
   notificationDelay = 60,
   notificationLoop = 0,
   notificationSound = false,
   notificationSoundSrc = SoundBeep,
-  style,
+  notificationStyle,
+  notificationClassName = 'floating-whatsapp-notification',
+
   buttonStyle,
-  chatboxStyle,
-  className = 'floating-whatsapp',
   buttonClassName = 'floating-whatsapp-button',
-  chatboxClassName = 'floating-whatsapp-chatbox'
+
+  chatboxHeight = 320,
+  chatboxStyle,
+  chatboxClassName = 'floating-whatsapp-chatbox',
+
+  darkMode = false,
+  style,
+  className = 'floating-whatsapp'
 }: FloatingWhatsAppProps) {
   const [{ isOpen, isDelay, isNotification }, dispatch] = useReducer(reducer, {
     isOpen: false,
@@ -110,7 +124,7 @@ export function FloatingWhatsApp({
     if (!notification) return
 
     dispatch({ type: 'notification' })
-
+    if (onNotification) onNotification()
     if (notificationLoop > 0) {
       loops.current += 1
 
@@ -125,7 +139,7 @@ export function FloatingWhatsApp({
         if (onLoopDone) onLoopDone()
       }
     }
-  }, [notification, notificationLoop, notificationSound, onLoopDone])
+  }, [notification, notificationLoop, notificationSound, onNotification, onLoopDone])
 
   useEffect(() => {
     const delayInSecond = notificationDelay * 1000
@@ -197,7 +211,11 @@ export function FloatingWhatsApp({
         aria-hidden='true'
       >
         <WhatsappSVG />
-        {isNotification && <span className={css.notificationIndicator}>1</span>}
+        {isNotification && (
+          <span className={`${css.notificationIndicator} ${notificationClassName}`} style={notificationStyle}>
+            1
+          </span>
+        )}
       </div>
 
       <div
