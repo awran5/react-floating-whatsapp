@@ -19,14 +19,14 @@
   "main": "dist/index.js",
   "source": "src/index.tsx",
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "scripts": {
     "clean": "rm -rf dist",
-    "clean:sb": "rm -rf storybook-static",
+    "clean-sb": "rm -rf storybook-static",
     "build": "yarn clean && rollup -c --exports auto",
     "start": "start-storybook -p 6006",
-    "changes": "auto-changelog -p --template keepachangelog && git add CHANGELOG.md",
+    "log": "auto-changelog -p --template keepachangelog && git add CHANGELOG.md",
     "build-sb": "build-storybook && vercel --prod"
   },
   "peerDependencies": {
