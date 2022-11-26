@@ -34,15 +34,3 @@ export default {
     format: 'cjs'
   }
 }
-
-/**
- * Check for touch devices
- * @returns `boolean`
- */
-function isTouchDevice() {
-  return (
-    (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) ||
-    'ontouchstart' in window ||
-    (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0)
-  )
-}
