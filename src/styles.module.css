@@ -18,9 +18,6 @@
   cursor: pointer;
   background-color: #25d366;
   border-radius: 50%;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   box-shadow: 0px 4px 10px 0px rgb(0 0 0 / 15%);
   z-index: 9998;
@@ -34,7 +31,6 @@
   border-radius: 50%;
   position: absolute;
   box-shadow: 0 0 0 0 rgba(37, 211, 101, 0);
-  -webkit-animation: _pulse 1.2s infinite;
   animation: _pulse 1.2s infinite;
 }
 
@@ -73,12 +69,10 @@
 }
 
 .whatsappChatBox.open {
-  -webkit-animation: _bounceIn 0.4s both;
   animation: _bounceIn 0.4s both;
 }
 
 .whatsappChatBox.close {
-  -webkit-animation: _bounceOut 0.4s both;
   animation: _bounceOut 0.4s both;
 }
 
@@ -88,7 +82,6 @@
   display: grid;
   align-items: center;
   padding: 0.25rem;
-  -ms-grid-columns: 20% 1% 60% 1% 1fr;
   grid-template-columns: 20% 60% 1fr;
   gap: 1%;
 }
@@ -177,7 +170,6 @@
 }
 
 .typing .dot {
-  -webkit-animation: typingAnimation 1.8s infinite ease-in-out;
   animation: typingAnimation 1.8s infinite ease-in-out;
   background-color: rgba(20, 105, 69, 0.7);
   border-radius: 50%;
@@ -189,17 +181,14 @@
 }
 
 .typing .dot:nth-child(1) {
-  -webkit-animation-delay: 200ms;
   animation-delay: 200ms;
 }
 
 .typing .dot:nth-child(2) {
-  -webkit-animation-delay: 300ms;
   animation-delay: 300ms;
 }
 
 .typing .dot:nth-child(3) {
-  -webkit-animation-delay: 400ms;
   animation-delay: 400ms;
 }
 
@@ -262,7 +251,6 @@
   display: -ms-grid;
   display: grid;
   align-items: center;
-  -ms-grid-columns: 85% 15%;
   grid-template-columns: 85% 15%;
   padding: 0.25rem;
 }
@@ -372,15 +360,6 @@
 }
 
 /* keyframes */
-@-webkit-keyframes _pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 101, 0.75);
-  }
-
-  100% {
-    box-shadow: 0 0 0 15px rgba(37, 211, 101, 0);
-  }
-}
 @keyframes _pulse {
   0% {
     box-shadow: 0 0 0 0 rgba(37, 211, 101, 0.75);
@@ -390,68 +369,21 @@
   }
 }
 
-@-webkit-keyframes _bounceIn {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale(0, 0);
-    transform: scale(0, 0);
-    -webkit-transform-origin: bottom right;
-    transform-origin: bottom right;
-  }
-
-  50% {
-    -webkit-transform: scale(1.03, 1.03);
-    transform: scale(1.03, 1.03);
-    -webkit-transform-origin: bottom right;
-    transform-origin: bottom right;
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    -webkit-transform-origin: bottom right;
-    transform-origin: bottom right;
-  }
-}
-
 @keyframes _bounceIn {
   0% {
     opacity: 0;
-    -webkit-transform: scale(0, 0);
     transform: scale(0, 0);
-    -webkit-transform-origin: bottom right;
     transform-origin: bottom right;
   }
 
   50% {
-    -webkit-transform: scale(1.03, 1.03);
     transform: scale(1.03, 1.03);
-    -webkit-transform-origin: bottom right;
     transform-origin: bottom right;
   }
 
   100% {
     opacity: 1;
-    -webkit-transform: scale(1, 1);
     transform: scale(1, 1);
-    -webkit-transform-origin: bottom right;
-    transform-origin: bottom right;
-  }
-}
-
-@-webkit-keyframes _bounceOut {
-  0% {
-    opacity: 1;
-    height: scale(1, 1);
-    -webkit-transform-origin: bottom right;
-    transform-origin: bottom right;
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: scale(0, 0);
-    transform: scale(0, 0);
-    -webkit-transform-origin: bottom right;
     transform-origin: bottom right;
   }
 }
@@ -460,66 +392,51 @@
   0% {
     opacity: 1;
     height: scale(1, 1);
-    -webkit-transform-origin: bottom right;
     transform-origin: bottom right;
   }
   100% {
     opacity: 0;
-    -webkit-transform: scale(0, 0);
     transform: scale(0, 0);
-    -webkit-transform-origin: bottom right;
     transform-origin: bottom right;
-  }
-}
-
-@-webkit-keyframes typingAnimation {
-  0% {
-    -webkit-transform: translateY(0px);
-    transform: translateY(0px);
-    background-color: rgba(20, 105, 69, 0.7);
-  }
-  28% {
-    -webkit-transform: translateY(-7px);
-    transform: translateY(-7px);
-    background-color: rgba(20, 105, 69, 0.4);
-  }
-  44% {
-    -webkit-transform: translateY(0px);
-    transform: translateY(0px);
-    background-color: rgba(20, 105, 69, 0.2);
   }
 }
 
 @keyframes typingAnimation {
   0% {
-    -webkit-transform: translateY(0px);
     transform: translateY(0px);
     background-color: rgba(20, 105, 69, 0.7);
   }
   28% {
-    -webkit-transform: translateY(-7px);
     transform: translateY(-7px);
     background-color: rgba(20, 105, 69, 0.4);
   }
   44% {
-    -webkit-transform: translateY(0px);
     transform: translateY(0px);
     background-color: rgba(20, 105, 69, 0.2);
   }
 }
 
 .notificationIndicator {
-  border-radius: 50%;
-  font-size: 11px;
-  font-weight: bold;
-  color: white;
-  background-color: #ff5454;
-  padding: 3px;
-  text-align: center;
-  line-height: 14px;
-  width: 14px;
-  height: 14px;
+  display: flex;
+  flex-flow: row wrap;
+  place-content: center;
+  align-items: center;
   position: absolute;
-  top: -5px;
-  right: 0px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 0.75rem;
+  min-width: 20px;
+  line-height: 1;
+  padding: 0px 6px;
+  height: 20px;
+  border-radius: 10px;
+  z-index: 1;
+  transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-color: rgb(235, 0, 20);
+  color: rgb(255, 255, 255);
+  top: 0;
+  right: 10px;
+  transform: scale(1) translate(50%, -50%);
+  transform-origin: 100% 0%;
 }
