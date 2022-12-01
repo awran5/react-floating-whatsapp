@@ -4,9 +4,9 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import postcss from 'rollup-plugin-postcss'
 import autoprefixer from 'autoprefixer'
+import terser from '@rollup/plugin-terser'
 import url from '@rollup/plugin-url'
 
-import { terser } from 'rollup-plugin-terser'
 import packageJson from './package.json'
 
 // eslint-disable-next-line import/no-anonymous-default-export
