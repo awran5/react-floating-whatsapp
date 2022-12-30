@@ -39,6 +39,9 @@ export interface FloatingWhatsAppProps {
   /** Input placeholder */
   placeholder?: string
 
+  /** Time delay after which the chatMessage is displayed (in seconds) */
+  messageDelay?: number
+
   /** Allow notifications (Disabled after user opens the chat box) */
   notification?: boolean
   /** Time delay between notifications in seconds */
@@ -84,6 +87,8 @@ export function FloatingWhatsApp({
   statusMessage = 'Typically replies within 1 hour',
   chatMessage = 'Hello there! 🤝 \nHow can we help?',
   placeholder = 'Type a message..',
+
+  messageDelay = 2,
 
   allowClickAway = false,
   allowEsc = false,
@@ -158,7 +163,7 @@ export function FloatingWhatsApp({
 
       clearInterval(notificationInterval.current)
       dispatch({ type: 'open' })
-      setTimeout(() => dispatch({ type: 'delay' }), 2000)
+      setTimeout(() => dispatch({ type: 'delay' }), messageDelay * 1000)
       if (onClick) onClick(event)
     },
     [isOpen, onClick]
