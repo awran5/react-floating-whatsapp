@@ -166,7 +166,7 @@ export function FloatingWhatsApp({
       setTimeout(() => dispatch({ type: 'delay' }), messageDelay * 1000)
       if (onClick) onClick(event)
     },
-    [isOpen, onClick]
+    [isOpen, onClick, messageDelay]
   )
 
   const handleClose = useCallback(() => {
