@@ -60,6 +60,7 @@ export default function App() {
 | `statusMessage`         |    String     | Optional | Text below the account username                                                                                           |  `Typically replies within 1 hour`   |
 | `chatMessage`           |    String     | Optional | Text inside the chat box.                                                                                                 | `Hello there! 🤝 \nHow can we help?` |
 | `placeholder`           |    String     | Optional | Input placeholder.                                                                                                        |          `Type a message..`          |
+| `messageDelay`          |    Number     | Optional | Time delay after which the chatMessage is displayed (in seconds).                                                         |                 `2`                  |
 | `darkMode`              |    Boolean    | Optional | Dark style.                                                                                                               |               `false`                |
 | `allowClickAway`        |    Boolean    | Optional | Closes the chat box when user clicks outside                                                                              |               `false`                |
 | `allowEsc`              |    Boolean    | Optional | Closes the chat box when `Escape` key is pressed                                                                          |               `false`                |
