@@ -21,7 +21,8 @@ const Template: ComponentStory<typeof FloatingWhatsApp> = (args) => <FloatingWha
 export const Default = Template.bind({})
 Default.args = {
   accountName: 'John Doe',
-  phoneNumber: '1234567890'
+  phoneNumber: '1234567890',
+  defaultMessage: ''
 }
 
 export const DarkMode = Template.bind({})
