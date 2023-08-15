@@ -11,6 +11,9 @@ import SoundBeep from './assets/whatsapp-notification.mp3'
 export interface FloatingWhatsAppProps {
   /** Callback function fires on click */
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void
+
+  /** Allow default submit action  */
+  allowDefaultSubmit?: boolean
   /** Callback function fires on submit with event and form input value passed */
   onSubmit?: (event: React.FormEvent<HTMLFormElement>, formValue: string) => void
   /** Callback function fires on close */
@@ -76,6 +79,7 @@ export interface FloatingWhatsAppProps {
 
 export function FloatingWhatsApp({
   onClick,
+  allowDefaultSubmit=true,
   onSubmit,
   onClose,
   onNotification,
@@ -178,8 +182,10 @@ export function FloatingWhatsApp({
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (!inputRef.current?.value) return
-
-    window.open(`https://api.whatsapp.com/send/?phone=${phoneNumber}&text=${inputRef.current.value}`)
+if(allowDefaultSubmit){
+  window.open(`https://api.whatsapp.com/send/?phone=${phoneNumber}&text=${inputRef.current.value}`)
+}
+  
     if (onSubmit) onSubmit(event, inputRef.current.value)
     inputRef.current.value = ''
   }
