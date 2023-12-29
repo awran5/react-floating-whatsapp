@@ -294,6 +294,9 @@
   background-color: transparent;
   border: 0;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .chatFooter form .buttonSend svg {
